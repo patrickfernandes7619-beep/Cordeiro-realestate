@@ -1,0 +1,8 @@
+{
+  "name": "Cordeiro Real Estate",
+  "description": "Cordeiro Real Estate is a premier real estate agency in Colaba & South Mumbai offering property buy, sell, residential rental, resale, and legal registration services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
