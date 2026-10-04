@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Award,
   ShieldCheck,
@@ -11,7 +11,6 @@ import {
   CheckCircle2,
   Briefcase,
   MessageCircle,
-  Camera,
 } from 'lucide-react';
 import { SITE_INFO } from '../data/siteData';
 
@@ -22,8 +21,6 @@ interface AboutSectionProps {
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => {
   const [photoUrlAnil, setPhotoUrlAnil] = useState<string>('/images/Anil.jpeg?v=2');
   const [photoUrlDeepak, setPhotoUrlDeepak] = useState<string>('/images/deepak-cordeiro.jpg?v=2');
-  const fileInputAnilRef = useRef<HTMLInputElement>(null);
-  const fileInputDeepakRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     // Check if user has uploaded custom portraits
@@ -40,44 +37,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
       setPhotoUrlDeepak('/images/deepak-cordeiro.jpg?v=2');
     }
   }, []);
-
-  const handleAnilPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result) {
-          setPhotoUrlAnil(result);
-          try {
-            localStorage.setItem('cordeiro_founder_photo', result);
-          } catch (err) {
-            console.warn('Could not save to localStorage', err);
-          }
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleDeepakPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        if (result) {
-          setPhotoUrlDeepak(result);
-          try {
-            localStorage.setItem('cordeiro_deepak_photo', result);
-          } catch (err) {
-            console.warn('Could not save to localStorage', err);
-          }
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const pillars = [
     {
@@ -199,19 +158,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 {/* Left Column: Round Photo of Anil Cordeiro, Identity & Direct Contacts */}
                 <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center text-center lg:border-r lg:border-slate-100 lg:pr-8">
-                  <input
-                    type="file"
-                    ref={fileInputAnilRef}
-                    onChange={handleAnilPhotoUpload}
-                    accept="image/*"
-                    className="hidden"
-                  />
-                  <div
-                    className="relative group cursor-pointer pt-1"
-                    onClick={() => fileInputAnilRef.current?.click()}
-                    title="Click to upload or change Anil's photo"
-                  >
-                    <div className="w-52 h-64 sm:w-60 sm:h-72 rounded-2xl p-1.5 bg-gradient-to-tr from-amber-500 via-blue-900 to-amber-400 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]">
+                  <div className="relative pt-1">
+                    <div className="w-52 h-64 sm:w-60 sm:h-72 rounded-2xl p-1.5 bg-gradient-to-tr from-amber-500 via-blue-900 to-amber-400 shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
                       <div className="w-full h-full rounded-xl overflow-hidden border-2 border-white bg-slate-100 relative shadow-inner">
                         <img
                           src={photoUrlAnil}
@@ -223,10 +171,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
                               '/src/assets/images/anil_cordeiro_exact_1791101022518.jpg';
                           }}
                         />
-                        <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-medium">
-                          <Camera className="w-6 h-6 mb-1 text-amber-400" />
-                          <span>Update Photo</span>
-                        </div>
                       </div>
                     </div>
                     {/* Verified Seal Badge */}
@@ -236,19 +180,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
                     >
                       <ShieldCheck className="w-5 h-5" />
                     </div>
-                  </div>
-
-                  {/* Photo Action Buttons */}
-                  <div className="mt-2.5 flex items-center justify-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => fileInputAnilRef.current?.click()}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3 py-1 rounded-lg transition-colors cursor-pointer shadow-xs"
-                      title="Upload your exact original file (Untitled design_20261002_174630_0000.png)"
-                    >
-                      <Camera className="w-3.5 h-3.5 text-blue-700" />
-                      <span>Upload / Replace Photo</span>
-                    </button>
                   </div>
 
                   {/* Name & Credentials */}
@@ -368,19 +299,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
                 {/* Left Column: Round Photo of Deepak Cordeiro */}
                 <div className="lg:col-span-5 xl:col-span-4 flex flex-col items-center text-center lg:border-r lg:border-slate-100 lg:pr-8">
-                  <input
-                    type="file"
-                    ref={fileInputDeepakRef}
-                    onChange={handleDeepakPhotoUpload}
-                    accept="image/*"
-                    className="hidden"
-                  />
-                  <div
-                    className="relative group cursor-pointer pt-1"
-                    onClick={() => fileInputDeepakRef.current?.click()}
-                    title="Click to upload or change Deepak's photo"
-                  >
-                    <div className="w-52 h-64 sm:w-60 sm:h-72 rounded-2xl p-1.5 bg-gradient-to-tr from-amber-500 via-blue-900 to-amber-400 shadow-2xl transition-transform duration-300 group-hover:scale-[1.02]">
+                  <div className="relative pt-1">
+                    <div className="w-52 h-64 sm:w-60 sm:h-72 rounded-2xl p-1.5 bg-gradient-to-tr from-amber-500 via-blue-900 to-amber-400 shadow-2xl transition-transform duration-300 hover:scale-[1.02]">
                       <div className="w-full h-full rounded-xl overflow-hidden border-2 border-white bg-slate-100 relative shadow-inner">
                         <img
                           src={photoUrlDeepak}
@@ -392,10 +312,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
                               '/src/assets/images/deepak_cordeiro_portrait_1791101167296.jpg';
                           }}
                         />
-                        <div className="absolute inset-0 bg-slate-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white text-xs font-medium">
-                          <Camera className="w-6 h-6 mb-1 text-amber-400" />
-                          <span>Update Photo</span>
-                        </div>
                       </div>
                     </div>
                     {/* Verified Seal Badge */}
@@ -405,19 +321,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
                     >
                       <ShieldCheck className="w-5 h-5" />
                     </div>
-                  </div>
-
-                  {/* Photo Action Buttons */}
-                  <div className="mt-2.5 flex items-center justify-center gap-2">
-                    <button
-                      type="button"
-                      onClick={() => fileInputDeepakRef.current?.click()}
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-900 bg-blue-50 hover:bg-blue-100 border border-blue-200 px-3 py-1 rounded-lg transition-colors cursor-pointer shadow-xs"
-                      title="Upload / Change Deepak's photo"
-                    >
-                      <Camera className="w-3.5 h-3.5 text-blue-700" />
-                      <span>Upload / Replace Photo</span>
-                    </button>
                   </div>
 
                   {/* Name & Credentials */}
