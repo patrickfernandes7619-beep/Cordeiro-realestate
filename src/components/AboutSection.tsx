@@ -13,28 +13,30 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { SITE_INFO } from '../data/siteData';
+import anilPhotoDefault from '../assets/images/anil_cordeiro_exact_match_1791120803389.jpg';
+import deepakPhotoDefault from '../assets/images/deepak_cordeiro_portrait_1791101167296.jpg';
 
 interface AboutSectionProps {
   onOpenEnquire: () => void;
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => {
-  const [photoUrlAnil, setPhotoUrlAnil] = useState<string>('/images/Anil.jpeg?v=2');
-  const [photoUrlDeepak, setPhotoUrlDeepak] = useState<string>('/images/deepak-cordeiro.jpg?v=2');
+  const [photoUrlAnil, setPhotoUrlAnil] = useState<string>(anilPhotoDefault);
+  const [photoUrlDeepak, setPhotoUrlDeepak] = useState<string>(deepakPhotoDefault);
 
   useEffect(() => {
-    // Check if user has uploaded custom portraits
-    const savedAnil = localStorage.getItem('cordeiro_founder_photo');
-    if (savedAnil && !savedAnil.includes('unsplash.com')) {
-      setPhotoUrlAnil(savedAnil);
-    } else {
-      setPhotoUrlAnil('/images/Anil.jpeg?v=2');
-    }
-    const savedDeepak = localStorage.getItem('cordeiro_deepak_photo');
-    if (savedDeepak && !savedDeepak.includes('unsplash.com')) {
-      setPhotoUrlDeepak(savedDeepak);
-    } else {
-      setPhotoUrlDeepak('/images/deepak-cordeiro.jpg?v=2');
+    // Check for user-selected custom original files
+    try {
+      const savedAnil = localStorage.getItem('cordeiro_custom_anil_portrait_v3');
+      if (savedAnil && savedAnil.startsWith('data:image')) {
+        setPhotoUrlAnil(savedAnil);
+      }
+      const savedDeepak = localStorage.getItem('cordeiro_custom_deepak_portrait_v3');
+      if (savedDeepak && savedDeepak.startsWith('data:image')) {
+        setPhotoUrlDeepak(savedDeepak);
+      }
+    } catch {
+      // ignore
     }
   }, []);
 
@@ -166,10 +168,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
                           alt="Anil S. Cordeiro - Founder & Principal Property Consultant"
                           className="w-full h-full object-cover object-top"
                           loading="lazy"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src =
-                              '/src/assets/images/anil_cordeiro_exact_1791101022518.jpg';
-                          }}
                         />
                       </div>
                     </div>
@@ -307,10 +305,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
                           alt="Deepak Cordeiro - Co-Founder & Director of Property Acquisitions"
                           className="w-full h-full object-cover object-top"
                           loading="lazy"
-                          onError={(e) => {
-                            (e.currentTarget as HTMLImageElement).src =
-                              '/src/assets/images/deepak_cordeiro_portrait_1791101167296.jpg';
-                          }}
                         />
                       </div>
                     </div>
