@@ -2,5 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home3/cordeiro/public_html/
-    - /bin/cp -R dist/* $DEPLOYPATH
-    - /bin/cp dist/.htaccess $DEPLOYPATH
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/rsync -amv --include='.htaccess' ./dist/ $DEPLOYPATH
+
