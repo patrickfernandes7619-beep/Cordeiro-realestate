@@ -1,8 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home3/cordeiro/public_html
-    - if [ ! -d "$DEPLOYPATH" ]; then export DEPLOYPATH=$HOME/public_html; fi
-    - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R build/* $DEPLOYPATH/ || /bin/cp -R dist/* $DEPLOYPATH/ || /bin/cp -R * $DEPLOYPATH/
-
+    - /bin/mkdir -p /home3/cordeiro/public_html
+    - /bin/cp -R dist/* /home3/cordeiro/public_html/
