@@ -1,0 +1,36 @@
+name: Build and Deploy to cPanel
+
+on:
+  push:
+    branches:
+      - main  # Runs automatically whenever you push code to the main branch
+
+jobs:
+  web-deploy:
+    name: Build & Upload
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Get latest code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Install dependencies
+      run: npm install --force
+
+    - name: Build production files
+      run: npm run build
+
+    - name: Sync files via FTP to cPanel
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        port: 21
+        local-dir: ./dist/  # Uploads everything inside the built dist folder
+        server-dir: /       # Directs straight into your public_html root
