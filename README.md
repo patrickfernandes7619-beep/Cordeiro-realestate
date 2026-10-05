@@ -64,7 +64,7 @@ npm run build
 If you prefer building locally and deploying the static build:
 1. Run `npm run build` locally.
 2. In your cPanel **File Manager**, navigate to `public_html/`.
-3. Upload all files from the `dist/` directory directly into `public_html/` (including `dist/.htaccess`).
+3. Upload all files from the `dist/` directory directly into `public_html/` (including `dist/.htaccess`). 
 
 ---
 
