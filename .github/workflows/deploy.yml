@@ -3,7 +3,7 @@ name: Build and Deploy to cPanel
 on:
   push:
     branches:
-      - main  # Runs automatically whenever you push code to the main branch
+      - main
 
 jobs:
   web-deploy:
@@ -32,5 +32,5 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         port: 21
-        local-dir: ./dist/  # Uploads everything inside the built dist folder
-        server-dir: /       # Directs straight into your public_html root
+        local-dir: ./dist/
+        server-dir: /
