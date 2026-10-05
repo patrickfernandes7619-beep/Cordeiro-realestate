@@ -13,8 +13,8 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import { SITE_INFO } from '../data/siteData';
-import anilPhotoDefault from '../assets/images/anil_cordeiro_exact_match_1791120803389.jpg';
-import deepakPhotoDefault from '../assets/images/deepak_cordeiro_portrait_1791101167296.jpg';
+import anilPhotoDefault from '../assets/images/anil_cordeiro.jpg';
+import deepakPhotoDefault from '../assets/images/deepak_cordeiro.jpg';
 
 interface AboutSectionProps {
   onOpenEnquire: () => void;
@@ -25,19 +25,19 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenEnquire }) => 
   const [photoUrlDeepak, setPhotoUrlDeepak] = useState<string>(deepakPhotoDefault);
 
   useEffect(() => {
-    // Check for user-selected custom original files
+    // Clear any previous cached photos so the authentic original photos are always displayed
     try {
-      const savedAnil = localStorage.getItem('cordeiro_custom_anil_portrait_v3');
-      if (savedAnil && savedAnil.startsWith('data:image')) {
-        setPhotoUrlAnil(savedAnil);
-      }
-      const savedDeepak = localStorage.getItem('cordeiro_custom_deepak_portrait_v3');
-      if (savedDeepak && savedDeepak.startsWith('data:image')) {
-        setPhotoUrlDeepak(savedDeepak);
-      }
+      localStorage.removeItem('cordeiro_original_anil_photo_custom');
+      localStorage.removeItem('cordeiro_custom_anil_portrait_v3');
+      localStorage.removeItem('cordeiro_custom_anil_portrait_v2');
+      localStorage.removeItem('cordeiro_custom_anil_portrait');
+      localStorage.removeItem('cordeiro_original_deepak_photo_custom');
+      localStorage.removeItem('cordeiro_custom_deepak_portrait');
     } catch {
       // ignore
     }
+    setPhotoUrlAnil(anilPhotoDefault);
+    setPhotoUrlDeepak(deepakPhotoDefault);
   }, []);
 
   const pillars = [
