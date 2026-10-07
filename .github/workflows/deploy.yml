@@ -1,20 +1,31 @@
-name: 🚀 Deploy Website via FTP
+name: 🚀 Build and Deploy React Website via FTP
 
 on:
   push:
     branches:
-      - main  # Change to 'master' if your branch name is master
+      - main  # Change to 'master' if your default branch name is master
 
 jobs:
   web-deploy:
-    name: 🎉 Sync Files to cPanel
+    name: 🎉 Compile and Sync Files
     runs-on: ubuntu-latest
 
     steps:
       - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
-      - name: 📂 Sync folders and files to the server
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 🔨 Install and Build Project
+        run: |
+          npm install
+          npm run build
+
+      - name: 📂 Sync Compiled Files to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -22,3 +33,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
+          local-dir: ./dist/  # This uploads ONLY the compiled website files
+          server-dir: ./      # Uploads directly into your FTP target folder
