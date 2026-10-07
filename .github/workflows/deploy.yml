@@ -18,12 +18,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          # Removed the cache option to prevent the lockfile error
 
       - name: 🔨 Install and Build Project
         run: |
           npm install
-          npm run build
+          npm run build --if-present
 
       - name: 📂 Sync Compiled Files to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -33,5 +33,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          local-dir: ./dist/  # This uploads ONLY the compiled website files
+          local-dir: ./dist/  # Uploads ONLY the compiled website files
           server-dir: ./      # Uploads directly into your FTP target folder
