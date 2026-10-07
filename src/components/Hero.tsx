@@ -18,14 +18,15 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEnquire }) => {
     <section id="home" className="relative w-full min-h-[580px] lg:min-h-[640px] flex items-center bg-slate-950 overflow-hidden">
       {/* Background Image with Depth Overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 scale-105 brightness-110 contrast-[1.05]"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=1920&q=85')",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/70" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-black/40" />
+      {/* Softened gradient overlays for a brighter, more vibrant backdrop while preserving text contrast */}
+      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/65 to-slate-950/35" />
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-black/20" />
 
       {/* Subtle grid pattern */}
       <div className="absolute inset-0 bg-[radial-gradient(#3857F1_1px,transparent_1px)] [background-size:24px_24px] opacity-15 pointer-events-none" />
@@ -41,7 +42,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEnquire }) => {
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.15] font-serif-luxury">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white mb-6 leading-[1.15] font-serif-luxury drop-shadow-md">
             Where Dreams{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-white to-amber-200">
               Come Home
@@ -49,7 +50,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenEnquire }) => {
           </h1>
 
           {/* Authentic Description & Mission Copy from Live Website */}
-          <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed mb-8 font-normal max-w-2xl">
+          <p className="text-sm sm:text-base md:text-lg text-slate-200 leading-relaxed mb-8 font-normal max-w-2xl drop-shadow-sm">
             {SITE_INFO.heroMission}
           </p>
 
