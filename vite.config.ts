@@ -51,7 +51,7 @@ function photoUploadPlugin(): Plugin {
 
 export default defineConfig(() => {
   return {
-    base: '/',
+    base: './',
     plugins: [react(), tailwindcss(), photoUploadPlugin()],
     resolve: {
       alias: {

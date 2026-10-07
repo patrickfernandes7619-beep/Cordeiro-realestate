@@ -59,46 +59,50 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
   return (
     <header className="w-full z-40 relative">
       {/* Top Notification / Information Bar */}
-      <div className="bg-slate-900 text-slate-300 text-xs py-2 border-b border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap justify-between items-center gap-2">
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-3">
-              <span className="text-[11px] uppercase tracking-wider font-semibold text-amber-400">Call Us:</span>
+      <div className="bg-slate-900 text-slate-300 text-xs py-1.5 sm:py-2 border-b border-slate-800">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-1.5 sm:gap-3">
+          {/* Contact Details (Call & Anil Cordeiro's Email) - Fully visible on Mobile, Tablet & Desktop */}
+          <div className="w-full sm:w-auto flex flex-wrap items-center justify-between sm:justify-start gap-x-3 sm:gap-x-5 gap-y-1">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <a
                 href="tel:+919820925054"
-                className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
+                className="flex items-center gap-1 hover:text-amber-400 transition-colors"
                 id="top-bar-phone-anil"
+                title="Call Anil S. Cordeiro"
               >
-                <Phone className="w-3.5 h-3.5 text-amber-400" />
+                <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>Anil: +91 9820925054</span>
               </a>
               <a
                 href="tel:+919967240464"
-                className="hidden md:flex items-center gap-1.5 hover:text-amber-400 transition-colors"
+                className="hidden lg:flex items-center gap-1 hover:text-amber-400 transition-colors"
                 id="top-bar-phone-deepak"
+                title="Call Deepak S. Cordeiro"
               >
-                <Phone className="w-3.5 h-3.5 text-amber-400" />
+                <Phone className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>Deepak: +91 9967240464</span>
               </a>
             </div>
 
+            {/* Anil Cordeiro Email - explicitly shown on mobile, tablet & desktop */}
             <a
-              href={`mailto:${SITE_INFO.emailGeneral}`}
-              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors"
-              id="top-bar-email"
+              href={`mailto:${SITE_INFO.emailAnil}`}
+              className="flex items-center gap-1.5 hover:text-amber-400 transition-colors shrink-0 text-slate-200"
+              id="top-bar-email-anil"
+              title="Email Anil S. Cordeiro"
             >
-              <Mail className="w-3.5 h-3.5 text-amber-400" />
-              <span className="hidden sm:inline">{SITE_INFO.emailGeneral}</span>
-              <span className="sm:hidden">Email</span>
+              <Mail className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span className="font-medium text-[11px] sm:text-xs tracking-tight">{SITE_INFO.emailAnil}</span>
             </a>
 
-            <span className="hidden md:flex items-center gap-1.5 text-slate-400">
-              <MapPin className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden xl:flex items-center gap-1.5 text-slate-400">
+              <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
               <span>Colaba, South Mumbai</span>
             </span>
           </div>
 
-          <div className="flex items-center gap-3 sm:gap-4 text-slate-400">
+          {/* Right Trust & Timing Badges */}
+          <div className="hidden md:flex items-center gap-3 sm:gap-4 text-slate-400 shrink-0">
             <div className="hidden lg:flex items-center gap-2 text-xs">
               <span className="flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-amber-400" />
@@ -107,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
               <LiveTimingBadge variant="dark" />
             </div>
 
-            <span className="inline-flex items-center gap-1 text-emerald-400 font-medium">
+            <span className="inline-flex items-center gap-1 text-emerald-400 font-medium text-[11px] sm:text-xs">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>21+ Yrs Trust</span>
             </span>
@@ -238,6 +242,27 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
             </nav>
 
             <div className="pt-4 border-t border-slate-200 space-y-3">
+              {/* Direct Contact in Mobile Drawer */}
+              <div className="p-3 bg-blue-50/70 border border-blue-200/80 rounded-lg space-y-2">
+                <div className="text-[11px] font-bold text-blue-900 uppercase tracking-wider">Direct Contact</div>
+                <div className="space-y-1.5 text-xs">
+                  <a
+                    href="tel:+919820925054"
+                    className="flex items-center gap-2 text-slate-800 hover:text-blue-800 font-semibold"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-blue-700" />
+                    <span>Anil: +91 9820925054</span>
+                  </a>
+                  <a
+                    href={`mailto:${SITE_INFO.emailAnil}`}
+                    className="flex items-center gap-2 text-slate-800 hover:text-blue-800 font-medium break-all"
+                  >
+                    <Mail className="w-3.5 h-3.5 text-blue-700 shrink-0" />
+                    <span>{SITE_INFO.emailAnil}</span>
+                  </a>
+                </div>
+              </div>
+
               <div className="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">

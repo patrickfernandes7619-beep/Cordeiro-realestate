@@ -22,6 +22,8 @@ export const SITE_INFO = {
   ],
   phoneLandline: '022-22154470',
   emailGeneral: 'cordeirorealestate@gmail.com',
+  emailAnil: 'anil@cordeirorealestate.co.in',
+  emailDeepak: 'deepak@cordeirorealestate.co.in',
   emailDirectors: ['anil@cordeirorealestate.co.in', 'deepak@cordeirorealestate.co.in'],
   locationHeadline: 'Colaba & Lower Parel, Mumbai',
   timings: 'Mon - Sat : 10:30 AM - 06:30 PM',
