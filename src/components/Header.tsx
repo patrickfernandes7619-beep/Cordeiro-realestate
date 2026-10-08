@@ -95,6 +95,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
               <span className="font-medium text-[11px] sm:text-xs tracking-tight">{SITE_INFO.emailAnil}</span>
             </a>
 
+            {/* 21+ Yrs in green badge visible on mobile top bar */}
+            <span className="inline-flex md:hidden items-center gap-1 text-emerald-400 font-bold text-[11px]">
+              <ShieldCheck className="w-3 h-3 text-emerald-400" />
+              <span>21+ Yrs</span>
+            </span>
+
             <span className="hidden xl:flex items-center gap-1.5 text-slate-400">
               <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
               <span>Colaba, South Mumbai</span>
@@ -111,7 +117,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
               <LiveTimingBadge variant="dark" />
             </div>
 
-            <span className="inline-flex items-center gap-1 text-emerald-400 font-medium text-[11px] sm:text-xs">
+            <span className="inline-flex items-center gap-1 text-emerald-400 font-bold text-[11px] sm:text-xs">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>21+ Yrs Trust</span>
             </span>
@@ -187,6 +193,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenEnquire }) => {
 
           {/* Right Action Buttons */}
           <div className="hidden sm:flex items-center gap-2.5">
+            <span className="hidden md:inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-300/80 text-xs font-bold shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+              <span>21+ Yrs Trust</span>
+            </span>
             <button
               onClick={() => onOpenEnquire()}
               className="bg-blue-800 hover:bg-blue-900 text-white text-xs xl:text-sm font-semibold px-4 py-2 rounded-md shadow-xs transition-all hover:shadow-sm flex items-center gap-1.5 cursor-pointer"
