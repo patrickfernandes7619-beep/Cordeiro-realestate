@@ -20,11 +20,10 @@ jobs:
         with:
           node-version: 20
         
-            - name: 📦 Install dependencies & build production dist
+      - name: 📦 Install dependencies & build production dist
         run: |
           npm ci --legacy-peer-deps || npm install --legacy-peer-deps
           npm run build
-
 
       - name: 📂 Sync compiled 'dist/' to cPanel server
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
