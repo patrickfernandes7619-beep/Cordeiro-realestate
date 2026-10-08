@@ -15,11 +15,11 @@ jobs:
       - name: 🚚 Checkout source code
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup Node.js 20
+      - name: ⚙️ Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-        
+          node-version: 22 # 👈 Upgraded to fix the deprecation warning
+
       - name: 📦 Install dependencies & build production dist
         run: |
           npm ci --legacy-peer-deps || npm install --legacy-peer-deps
@@ -35,7 +35,6 @@ jobs:
           port: 21
           # Crucial: deploy the compiled production files from dist/, NOT raw source code
           local-dir: ./dist/
-          # If your FTP user logs into cPanel root, use public_html/
-          # If your FTP account already opens directly into public_html, change to ./
-          server-dir: public_html/
+          # 👇 Changed to ./ so your files upload directly to public_html instead of nesting
+          server-dir: ./
           dangerous-clean-slate: false
