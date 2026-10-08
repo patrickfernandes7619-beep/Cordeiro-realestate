@@ -18,7 +18,7 @@ jobs:
       - name: ⚙️ Setup Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 22 # 👈 Upgraded to fix the deprecation warning
+          node-version: 22
 
       - name: 📦 Install dependencies & build production dist
         run: |
@@ -33,8 +33,6 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          # Crucial: deploy the compiled production files from dist/, NOT raw source code
           local-dir: ./dist/
-          # 👇 Changed to ./ so your files upload directly to public_html instead of nesting
           server-dir: ./
           dangerous-clean-slate: false
